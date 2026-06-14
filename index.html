@@ -977,6 +977,7 @@ main{max-width:760px;margin:0 auto;padding:16px 14px 30px}
   <div class="card">
     <div class="sec-title" style="margin-top:0">Account</div>
     <p class="hint" style="margin-bottom:10px">Signed in as <strong id="acct-email">—</strong>. Your records sync to the cloud automatically — the chip at the top shows the status.</p>
+    <p class="hint" style="margin-bottom:10px;word-break:break-all">Cloud account ID: <strong id="acct-uid">—</strong></p>
     <button class="btn btn-block" onclick="signOut()">Sign out</button>
   </div>
 
@@ -1816,7 +1817,10 @@ function renderSettings(){
   $('r-opWeekend').value=state.rates.opWeekend;
   $('r-supFull').value=state.rates.supFull;
   $('r-supWeekend').value=state.rates.supWeekend;
-  if(session) $('acct-email').textContent = session.user.email;
+  if(session){
+    $('acct-email').textContent = session.user.email || '(no email on session)';
+    $('acct-uid').textContent = session.user.id;
+  }
   renderRoster();
 }
 /* ---- crew name list (suggestions for "Add person") ---- */
